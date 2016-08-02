@@ -29,7 +29,6 @@ public class TermCounter {
 	public String getLabel() {
 		return label;
 	}
-	
 	/**
 	 * Returns the total of all counts.
 	 * 

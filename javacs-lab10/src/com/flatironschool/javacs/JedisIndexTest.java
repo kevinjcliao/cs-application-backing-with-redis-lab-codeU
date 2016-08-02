@@ -31,9 +31,10 @@ public class JedisIndexTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+      System.out.println("Starting.");
 		jedis = JedisMaker.make();
 		index = new JedisIndex(jedis);
-		
+    System.out.println("Made jedisindex. Running loadIndex");
 		loadIndex(index);
 	}
 	
@@ -44,6 +45,7 @@ public class JedisIndexTest {
 	 * @throws IOException
 	 */
 	private static void loadIndex(JedisIndex index) throws IOException {
+      System.out.println("Running loadIndex");
 		WikiFetcher wf = new WikiFetcher();
 
 		url1 = "https://en.wikipedia.org/wiki/Java_(programming_language)";
@@ -60,6 +62,7 @@ public class JedisIndexTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
+      System.out.println("Running tearDown");
 		jedis.close();
 	}
 
@@ -68,6 +71,7 @@ public class JedisIndexTest {
 	 */
 	@Test
 	public void testGetCounts() {
+      System.out.println("Starting testGetCounts()");
 		Map<String, Integer> map = index.getCounts("the");
 		assertThat(map.get(url1), is(339));
 		assertThat(map.get(url2), is(264));
